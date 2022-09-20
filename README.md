@@ -1,5 +1,5 @@
 # NAO PS4 Control
-Control the Nao robot with a ps4 controller.
+Control the Nao robot with a ps5 (or ps4) controller.
 
 ## Requirements
 - python 2
@@ -18,13 +18,13 @@ Copy sound files to the robot:
 
 `scp -r sounds/ nao@<robot_ip>:~/`
 
-Connect the robot and the ps4 controller to your laptop.
+Connect the robot and the ps5 controller to your laptop.
 
-To connect the ps4 controller via bluetooth follow [this link](http://ros-developer.com/2017/12/14/ps4-controller-bluetooth-ubuntu/).
+To connect the ps5 controller via bluetooth follow [this link](http://ros-developer.com/2017/12/14/ps4-controller-bluetooth-ubuntu/).
 
 ## Run
 `cd scripts/`
-`python ps4.py -ip <robot_ip>`
+`python ps5.py -ip <robot_ip>`
 
 ## Controls
 | PS4 control    | Action |
