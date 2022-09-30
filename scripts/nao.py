@@ -30,12 +30,15 @@ class NAO(object):
         print("connected with controller")
 
     def walk(self, x, y, theta):
+                
         if (self.x != 0 or self.y != 0 or self.theta != 0) and (x == 0 and y == 0 and theta == 0):
             # If not already stopped, but need to stop
             self.motion_proxy.stopMove()
-            # self.posture_proxy.goToPosture("StandInit", 0.8)
+        elif (x == 0 and y == 0 and theta != 0):
+            self.motion_proxy.moveToward(0, 0, round(theta / math.pi, 2))
         else:
             self.motion_proxy.moveToward(round(-y, 2), round(-x, 2), round(theta / math.pi, 2))
+
         self.x = x
         self.y = y
         self.theta = theta
