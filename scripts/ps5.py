@@ -51,7 +51,7 @@ class PS4Controller(object):
             if self.theta_x != 0 or self.theta_y != 0:
                 theta = math.atan2(-self.theta_x, -self.theta_y)
 
-            if abs(self.x) >= 0.2 or abs(self.y) >= 0.2:
+            if abs(self.x) >= 0.2 or abs(self.y) >= 0.2 or theta != 0:
                 print("\nmoving\n")
                 self.robot.walk(self.x, self.y, theta)
             else:
