@@ -2,7 +2,6 @@
 # Modified by Lex to work well with a ps5 controller
 
 import argparse
-from re import T
 import pygame
 import math
 
