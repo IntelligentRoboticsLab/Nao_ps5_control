@@ -1,4 +1,4 @@
-# NAO PS4 Control
+# NAO PS5 Control
 Control the Nao robot with a ps5 (or ps4) controller.
 
 ## Requirements
@@ -35,7 +35,7 @@ To connect the ps5 controller via bluetooth follow [this link](http://ros-develo
 | O              | kick |
 | △              | elephant |
 | □              | saxophone |
-| ps4            | shutdown (robot will go to rest position and disconnect) |
+| ps             | shutdown (robot will go to rest position and disconnect) |
 | l1             | Sit down |
 | r1             | Macarena |
 
