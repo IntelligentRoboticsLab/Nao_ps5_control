@@ -26,8 +26,8 @@ class NAO(object):
         # self.StiffnessOn()
 
         self.walkConfig = [ 
-            ["MaxStepX", 0.01],         # step of 2 cm in front
-            ["MaxStepY", 0.16],         # default value
+            ["MaxStepX", 0.02],         # step of 2 cm in front
+            ["MaxStepY", 0.02],         # default value
             ["MaxStepTheta", 0.4],      # default value
             ["MaxStepFrequency", 0.0],  # low frequency
             ["StepHeight", 0.01],       # step height of 1 cm
