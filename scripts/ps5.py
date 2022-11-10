@@ -16,6 +16,11 @@ class PS4Controller(object):
         self.robot = robot
         pygame.init()
         pygame.joystick.init()
+
+        if (pygame.joystick.get_count() == 0):
+            print("No joystick found")
+            exit()
+
         self.controller = pygame.joystick.Joystick(0)
         self.controller.init()
 
@@ -51,12 +56,16 @@ class PS4Controller(object):
             if self.theta_x != 0 or self.theta_y != 0:
                 theta = math.atan2(-self.theta_x, -self.theta_y)
 
-            if abs(self.x) >= 0.2 or abs(self.y) >= 0.2 or theta != 0:
+            if abs(self.x) >= 0.2 or abs(self.y) >= 0.2 or abs(self.theta_x) >= 0.1:
                 print("\nmoving\n")
                 self.robot.walk(self.x, self.y, theta)
             else:
                 print("\nwaiting for input\n")
                 self.robot.motion_proxy.stopMove()
+
+            print("theta: " + str(theta))
+            print("x: " + str(self.x))
+            print("y: " + str(self.y))
 
         elif event.type == pygame.JOYBALLMOTION:
             # Handle joy ball motion
@@ -75,8 +84,11 @@ class PS4Controller(object):
                 self.robot.saxophone()
             elif button == 4:  # L1
                 if not self.robot.sit:
+                    print("Stopping walking")
+                    # self.robot.posture_proxy.goToPosture("StandInit", 0.8)
                     self.robot.stop_walking()
                 else:
+                    print("Stand Init, sit false")
                     self.robot.posture_proxy.goToPosture("StandInit", 0.8)
                     self.robot.sit = False
             elif button == 5:  # R1

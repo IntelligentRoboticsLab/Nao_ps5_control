@@ -22,6 +22,20 @@ class NAO(object):
         self.theta = 0
         self.sit = False
 
+        # Set NAO in stiffness On
+        # self.StiffnessOn()
+
+        self.walkConfig = [ 
+            ["MaxStepX", 0.01],         # step of 2 cm in front
+            ["MaxStepY", 0.16],         # default value
+            ["MaxStepTheta", 0.4],      # default value
+            ["MaxStepFrequency", 0.0],  # low frequency
+            ["StepHeight", 0.01],       # step height of 1 cm
+            ["TorsoWx", 0.0],           # default value
+            ["TorsoWy", 0.1] 
+        ]
+        
+
         # Turn off autonomous life and wake up
         self.auto_life_proxy.setAutonomousAbilityEnabled("All", False)
         self.motion_proxy.wakeUp()
@@ -35,13 +49,21 @@ class NAO(object):
             # If not already stopped, but need to stop
             self.motion_proxy.stopMove()
         elif (x == 0 and y == 0 and theta != 0):
-            self.motion_proxy.moveToward(0, 0, round(theta / math.pi, 2))
+            self.motion_proxy.moveToward(0, 0, round(theta / math.pi, 2), self.walkConfig)
         else:
-            self.motion_proxy.moveToward(round(-y, 2), round(-x, 2), round(theta / math.pi, 2))
+            self.motion_proxy.moveToward(round(-y, 2), round(-x, 2), round(theta / math.pi, 2), self.walkConfig)
 
         self.x = x
         self.y = y
         self.theta = theta
+
+    def StiffnessOn(self):
+        # We use the "Body" name to signify the collection of all joints
+        pNames = "Body"
+        pStiffnessLists = 1.0
+        pTimeLists = 1.0
+        self.motion_proxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists)
+
 
     def wave(self):
         wave.wave(self.motion_proxy, self.text_to_speech_proxy)
