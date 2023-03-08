@@ -51,7 +51,7 @@ class PS4Controller(object):
             if self.theta_x != 0 or self.theta_y != 0:
                 theta = math.atan2(-self.theta_x, -self.theta_y)
 
-            if abs(self.x) >= 0.2 or abs(self.y) >= 0.2 or theta != 0:
+            if abs(self.x) >= 0.2 or abs(self.y) >= 0.2 or abs(theta) >= 0.1:
                 print("\nmoving\n")
                 self.robot.walk(self.x, self.y, theta)
             else:
@@ -108,9 +108,12 @@ class PS4Controller(object):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Control NAO with a PS4 controller")
-    parser.add_argument("-ip", type=str, help="IP address of the robot", default="nao.local")
-    parser.add_argument("-port", type=int, help="Port of the robot", default=9559)
+    parser = argparse.ArgumentParser(
+        description="Control NAO with a PS4 controller")
+    parser.add_argument(
+        "-ip", type=str, help="IP address of the robot", default="nao.local")
+    parser.add_argument("-port", type=int,
+                        help="Port of the robot", default=9559)
 
     args = parser.parse_args()
     ps4 = PS4Controller(nao.NAO(args.ip, args.port))
