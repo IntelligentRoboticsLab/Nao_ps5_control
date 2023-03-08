@@ -66,13 +66,16 @@ class PS4Controller(object):
             # Handle button presses
             button = event.dict['button']
             if button == 0:  # Cross
-                self.robot.wave()
+                pass
+                # self.robot.wave()
             elif button == 1:  # Circle
                 self.robot.kick()
             elif button == 2:  # Triangle
-                self.robot.elephant()
+                pass
+                # self.robot.elephant()
             elif button == 3:  # Square
-                self.robot.saxophone()
+                pass
+                # self.robot.saxophone()
             elif button == 4:  # L1
                 if not self.robot.sit:
                     self.robot.stop_walking()
@@ -80,13 +83,15 @@ class PS4Controller(object):
                     self.robot.posture_proxy.goToPosture("StandInit", 0.8)
                     self.robot.sit = False
             elif button == 5:  # R1
-                self.robot.macarena()
+                pass
+                # self.robot.macarena()
             elif button == 6:  # L2
                 pass
             elif button == 7:  # R2
                 pass
             elif button == 8:  # Share
-                self.robot.take_picture()
+                pass
+                # self.robot.take_picture()
             elif button == 9:  # Options
                 self.robot
             elif button == 10:  # PS4
